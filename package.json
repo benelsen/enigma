@@ -1,0 +1,16 @@
+{
+  "name": "enigma",
+  "version": "0.0.1",
+  "dependencies": {
+    "underscore": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "component": {
+    "scripts": {
+      "enigma/index.js": "index.js"
+    }
+  }
+}

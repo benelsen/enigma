@@ -1,0 +1,16 @@
+{
+  "name": "enigma",
+  "repo": "benelsen/enigma",
+  "description": "Implementation an enigma machine.",
+  "keywords": ["enigma"],
+  "version": "0.0.1",
+  "scripts": [
+    "index.js",
+    "lib/enigma.js",
+    "lib/steckerbrett.js",
+    "lib/eintrittswalze.js",
+    "lib/rotor.js",
+    "lib/umkehrwalze.js"
+  ],
+  "license": "MIT"
+}
