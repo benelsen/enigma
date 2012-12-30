@@ -1,5 +1,3 @@
-var assert = require('assert');
-var _ = require('underscore');
 
 var enigmajs = require('..');
 
@@ -63,7 +61,8 @@ describe('Enigma', function(){
               enigma.rotate();
             };
 
-            assert.equal(enigma.getPositions(), 'AAA');
+            this.slow(5000);
+            enigma.getPositions().should.equal('AAA');
 
           };
         };

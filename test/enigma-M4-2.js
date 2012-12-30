@@ -1,4 +1,3 @@
-var assert = require('assert');
 
 var enigmajs = require('..');
 
@@ -21,13 +20,27 @@ var ukwBalt = new enigmajs.Umkehrwalze('ENKQAUYWJICOPBLMDXZVFTHRGS');
 var steckerbrett = new enigmajs.Steckerbrett( stecker );
 
 var enigma = new enigmajs.Enigma([rotorB, rotorII, rotorIV, rotorI], ukwBalt, steckerbrett, etw);
-enigma.setRingSettings( ringSettings );
-enigma.setPositions( messageKey );
 
-var decrypted = enigma.string(ciphertext);
+describe('Four rotor Enigma test #2', function() {
 
-describe('Four rotor Enigma decryption test #2', function(){
-  it('decrypted should be an exact match of plaintext', function() {
-    assert.equal( decrypted, plaintext );
+  describe('encryption', function() {
+
+    it('encrypted plaintext should match ciphertext', function() {
+      enigma.setRingSettings( ringSettings );
+      enigma.setPositions( messageKey );
+      enigma.string( plaintext ).should.equal( ciphertext );
+    });
+
   });
+
+  describe('decryption', function() {
+
+    it('decrypted ciphertext should match plaintext', function() {
+      enigma.setRingSettings( ringSettings );
+      enigma.setPositions( messageKey );
+      enigma.string( ciphertext ).should.equal( plaintext );
+    });
+
+  });
+
 });

@@ -1,16 +1,21 @@
 {
   "name": "enigma",
+  "description": "Implementation an enigma machine",
+  "author": "Ben Elsen <ben.elsen@gmail.com>",
+  "keywords": ["enigma", "component"],
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benelsen/enigma.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
   "dependencies": {
-    "underscore": "*"
   },
   "devDependencies": {
     "mocha": "*",
     "should": "*"
   },
-  "component": {
-    "scripts": {
-      "enigma/index.js": "index.js"
-    }
-  }
+  "license": "MIT"
 }

@@ -9,7 +9,7 @@ clean:
 	rm -fr build components
 
 test:
-	@mocha \
+	@./node_modules/.bin/mocha \
 		--reporter spec \
 		--require should
 

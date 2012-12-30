@@ -1,16 +1,24 @@
 {
   "name": "enigma",
-  "repo": "benelsen/enigma",
-  "description": "Implementation an enigma machine.",
+  "description": "Implementation an enigma machine",
+  "author": "Ben Elsen <ben.elsen@gmail.com>",
   "keywords": ["enigma"],
   "version": "0.0.1",
+  "repo": "benelsen/enigma",
+  "dependencies": {
+  },
+  "development": {
+    "component/assert": "*",
+    "visionmedia/mocha": "*"
+  },
   "scripts": [
     "index.js",
     "lib/enigma.js",
     "lib/steckerbrett.js",
     "lib/eintrittswalze.js",
     "lib/rotor.js",
-    "lib/umkehrwalze.js"
+    "lib/umkehrwalze.js",
+    "lib/walze.js"
   ],
   "license": "MIT"
 }

@@ -49,19 +49,19 @@ var decipheredText = enigma.string( cipheredText );
 describe('Three rotor Enigma end-to-end test', function(){
 
   it('cipheredMessageKey should be an exact match of encMessageKey', function() {
-    assert.equal( cipheredMessageKey , encMessageKey );
+    cipheredMessageKey.should.equal( encMessageKey );
   });
 
   it('cipheredText should be an exact match of cipherTest', function() {
-    assert.equal(cipheredText, cipherTest);
+    cipheredText.should.equal( cipherTest);
   });
 
   it('decipheredMessageKey should be an exact match of messageKey', function() {
-    assert.equal( decipheredMessageKey, messageKey );
+    decipheredMessageKey.should.equal( messageKey );
   });
 
   it('decipheredText should be an exact match of plaintext', function() {
-    assert.equal( decipheredText, plaintext );
+    decipheredText.should.equal( plaintext );
   });
 
 });
