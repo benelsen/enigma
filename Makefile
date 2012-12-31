@@ -6,7 +6,10 @@ components:
 	@component install --dev
 
 clean:
-	rm -fr build components
+	rm -rf build
+
+cleanall: clean
+	rm -rf components node_modules
 
 test:
 	@./node_modules/.bin/mocha \
