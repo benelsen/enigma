@@ -18,48 +18,108 @@ var Walze = require('../lib/walze');
 
 describe('Walze', function() {
 
-  it('should set alphabet as wiring when passing no arguments', function() {
-    var etw = new Walze();
-    etw.wiring.should.eql(alphabet.split(''));
+  it('should set defaults if constructor is called without arguments', function() {
+    var walze = new Walze();
+    walze.name.should.eql('');
+    walze.wiring.should.eql(alphabet.split(''));
   });
 
-  it('should set wiring when passing array of strings/chars', function() {
-    var testSequence = shuffle( alphabet.split('') );
+  describe('#alphabet', function() {
 
-    var etw = new Walze(testSequence);
-    etw.wiring.should.eql(testSequence);
+    it('should exist ', function() {
+      var walze = new Walze();
+      walze.should.have.property('alphabet');
+    });
+
+    it('should be set to alphabet', function() {
+      var walze = new Walze();
+      walze.alphabet.should.eql(alphabet.split(''));
+    });
+
   });
 
-  it('should set wiring when passing string', function() {
-    var testSequence = shuffle( alphabet.split('') );
 
-    var etw = new Walze(testSequence.join(''));
-    etw.wiring.should.eql(testSequence);
+  describe('#setName()', function() {
+
+    it('should be a function', function() {
+      var walze = new Walze();
+      walze.setName.should.be.a('function');
+    });
+
+    it('should set empty string if no argument is passed', function() {
+      var walze = new Walze();
+      walze.setName();
+      walze.name.should.equal('');
+    });
+
+    it('should set empty string to the string that passed', function() {
+      var testName = shuffle( alphabet.split('') ).join('')
+      var walze = new Walze();
+      walze.setName(testName);
+      walze.name.should.equal(testName);
+    });
+
   });
+
+
+  describe('#setWiring()', function() {
+
+    it('should be a function', function() {
+      var walze = new Walze();
+      walze.setWiring.should.be.a('function');
+    });
+
+    it('should set alphabet as wiring when passing no arguments', function() {
+      var walze = new Walze();
+      walze.setWiring();
+      walze.wiring.should.eql(alphabet.split(''));
+    });
+
+    it('should set wiring when passing array of strings/chars', function() {
+      var testSequence = shuffle( alphabet.split('') );
+      var walze = new Walze();
+      walze.setWiring(testSequence);
+      walze.wiring.should.eql(testSequence);
+    });
+
+    it('should set wiring when passing string', function() {
+      var testSequence = shuffle( alphabet.split('') );
+      var walze = new Walze();
+      walze.setWiring(testSequence.join(''));
+      walze.wiring.should.eql(testSequence);
+    });
+
+  });
+
 
   describe('#signal()', function() {
+
+    it('should be a function', function() {
+      var walze = new Walze();
+      walze.signal.should.be.a('function');
+    });
 
     it('should return the same character', function() {
       var testChar = shuffle( alphabet.split('') ).join('').substr(0,1);
 
-      var etw = new Walze(alphabet);
-      etw.signal(testChar).should.eql(testChar);
+      var walze = new Walze(alphabet);
+      walze.signal(testChar).should.eql(testChar);
     });
 
     it('should return the next character', function() {
       var testSequence = alphabet.substr(1) + alphabet.substr(0,1);
       var testCharIndex = Math.floor( 25 * Math.random() );
 
-      var etw = new Walze(testSequence);
-      etw.signal(alphabet.substr(testCharIndex,1)).should.eql(testSequence.substr(testCharIndex,1));
+      var walze = new Walze(testSequence);
+      walze.signal(alphabet.substr(testCharIndex,1)).should.eql(testSequence.substr(testCharIndex,1));
     });
 
     it('should return the previous character', function() {
       var testSequence = alphabet.substr(1) + alphabet.substr(0,1);
       var testCharIndex = Math.floor( 2 + 23 * Math.random() );
 
-      var etw = new Walze(testSequence);
-      etw.signal(alphabet.substr(testCharIndex,1), true).should.eql(testSequence.substr(testCharIndex-2,1));
+      var walze = new Walze(testSequence);
+      walze.signal(alphabet.substr(testCharIndex,1), true).should.eql(testSequence.substr(testCharIndex-2,1));
     });
 
   });
