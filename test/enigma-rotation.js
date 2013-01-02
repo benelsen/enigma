@@ -33,9 +33,9 @@ for (var i = 0; i < array.length; i++) {
     for (var k = 0; k < array.length; k++) {
       if ( i !== j && i !== k && j !== k )
         permutations.push([array[i], array[j], array[k]]);
-    };
-  };
-};
+    }
+  }
+}
 
 describe('Enigma', function(){
 
@@ -57,16 +57,16 @@ describe('Enigma', function(){
             enigma.setPositions('AAA');
             enigma.setRingSettings('AAA');
 
-            for (var i = 1; i < (26*25*26+1); i++) {
+            for (var l = 1; l < (26*25*26+1); l++) {
               enigma.rotate();
-            };
+            }
 
             this.slow(5000);
             enigma.getPositions().should.equal('AAA');
 
-          };
-        };
-      };
+          }
+        }
+      }
 
     });
   });

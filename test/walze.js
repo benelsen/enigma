@@ -53,7 +53,7 @@ describe('Walze', function() {
     });
 
     it('should set empty string to the string that passed', function() {
-      var testName = shuffle( alphabet.split('') ).join('')
+      var testName = shuffle( alphabet.split('') ).join('');
       var walze = new Walze();
       walze.setName(testName);
       walze.name.should.equal(testName);
