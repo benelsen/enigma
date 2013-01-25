@@ -1,9 +1,9 @@
 {
   "name": "enigma",
-  "description": "Implementation an enigma machine",
+  "description": "Implementation of an enigma machine",
   "author": "Ben Elsen <ben.elsen@gmail.com>",
   "keywords": ["enigma"],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repo": "benelsen/enigma",
   "dependencies": {
   },

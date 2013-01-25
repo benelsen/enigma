@@ -1,9 +1,9 @@
 {
   "name": "enigma",
-  "description": "Implementation an enigma machine",
+  "description": "Implementation of an enigma machine",
   "author": "Ben Elsen <ben.elsen@gmail.com>",
   "keywords": ["enigma", "component"],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/benelsen/enigma.git"
