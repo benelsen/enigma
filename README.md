@@ -34,4 +34,4 @@ Prints out `RRHIUUFUVJLJYY`
 
 ## License
 
-  MIT
+[MIT](https://github.com/benelsen/enigma/blob/master/LICENSE)
