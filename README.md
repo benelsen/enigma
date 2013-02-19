@@ -1,5 +1,4 @@
 # enigma
-
   Implementation of an enigma machine
 
 ## Installation
@@ -30,7 +29,11 @@ Prints out `RRHIUUFUVJLJYY`
 
 ## API
 
+## Testing
+  
+    $ npm test
 
+  [![Build Status](https://travis-ci.org/benelsen/enigma.png?branch=master)](https://travis-ci.org/benelsen/enigma)
 
 ## License
 
