@@ -9,7 +9,7 @@ describe('Steckerbrett', function() {
 
     it('should be a function', function() {
       var plugboard = new Steckerbrett();
-      plugboard.setPlugs.should.be.a('function');
+      plugboard.setPlugs.should.be.a.Function;
     });
 
   });

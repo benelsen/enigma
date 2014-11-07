@@ -61,7 +61,7 @@ describe('Enigma', function(){
               enigma.rotate();
             }
 
-            this.slow(5000);
+            this.timeout(10000);
             enigma.getPositions().should.equal('AAA');
 
           }

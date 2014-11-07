@@ -1,21 +1,21 @@
 {
   "name": "enigma",
   "description": "Implementation of an enigma machine",
-  "author": "Ben Elsen <ben.elsen@gmail.com>",
-  "keywords": ["enigma", "component"],
-  "version": "0.0.2",
+  "author": "Ben Elsen <mail@benelsen.com> (https://benelsen.com/)",
+  "keywords": ["enigma"],
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/benelsen/enigma.git"
   },
   "scripts": {
-    "test": "make test"
+    "test": "./node_modules/.bin/mocha --reporter spec --require should"
   },
   "dependencies": {
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "^2.0.1",
+    "should": "^4.2.1"
   },
   "license": "MIT"
 }

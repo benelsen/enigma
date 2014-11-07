@@ -43,7 +43,7 @@ describe('Walze', function() {
 
     it('should be a function', function() {
       var walze = new Walze();
-      walze.setName.should.be.a('function');
+      walze.setName.should.be.a.Function;
     });
 
     it('should set empty string if no argument is passed', function() {
@@ -66,7 +66,7 @@ describe('Walze', function() {
 
     it('should be a function', function() {
       var walze = new Walze();
-      walze.setWiring.should.be.a('function');
+      walze.setWiring.should.be.a.Function;
     });
 
     it('should set alphabet as wiring when passing no arguments', function() {
@@ -96,7 +96,7 @@ describe('Walze', function() {
 
     it('should be a function', function() {
       var walze = new Walze();
-      walze.signal.should.be.a('function');
+      walze.signal.should.be.a.Function;
     });
 
     it('should return the same character', function() {

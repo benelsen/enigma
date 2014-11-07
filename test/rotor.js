@@ -9,7 +9,7 @@ describe('Rotor', function() {
 
     it('should be a function', function() {
       var rotor = new Rotor();
-      rotor.setNotches.should.be.a('function');
+      rotor.setNotches.should.be.a.Function;
     });
 
   });
@@ -18,7 +18,7 @@ describe('Rotor', function() {
 
     it('should be a function', function() {
       var rotor = new Rotor();
-      rotor.inNotch.should.be.a('function');
+      rotor.inNotch.should.be.a.Function;
     });
 
   });
@@ -27,7 +27,7 @@ describe('Rotor', function() {
 
     it('should be a function', function() {
       var rotor = new Rotor();
-      rotor.rotate.should.be.a('function');
+      rotor.rotate.should.be.a.Function;
     });
 
   });
