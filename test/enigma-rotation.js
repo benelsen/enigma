@@ -25,14 +25,13 @@ var steckerbrett = new enigmajs.Steckerbrett('');
 
 var enigma;
 
-var array = rotoren;
 var permutations = [];
 
-for (var i = 0; i < array.length; i++) {
-  for (var j = 0; j < array.length; j++) {
-    for (var k = 0; k < array.length; k++) {
+for (var i = 0; i < rotoren.length; i++) {
+  for (var j = 0; j < rotoren.length; j++) {
+    for (var k = 0; k < rotoren.length; k++) {
       if ( i !== j && i !== k && j !== k )
-        permutations.push([array[i], array[j], array[k]]);
+        permutations.push([rotoren[i], rotoren[j], rotoren[k]]);
     }
   }
 }
