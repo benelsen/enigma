@@ -27,7 +27,7 @@ console.log( enigma.string( 'EXAMPLEMESSAGE' ) );
 ```
 Prints out `RRHIUUFUVJLJYY`
 
-## API
+You should also have a look at [this test](test/enigma-realmessage.js) which demonstrates a more realistic procedure to cipher/decipher a message.
 
 ## Testing
   
