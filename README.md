@@ -4,9 +4,6 @@
 ## Installation
   
     $ npm install enigma
-  or
-  
-    $ component install benelsen/enigma
 
 ## Example
 
