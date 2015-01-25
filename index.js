@@ -1,14 +1,21 @@
 
-var Enigma          = require('./lib/enigma'),
-    Rotor           = require('./lib/rotor'),
-    Umkehrwalze     = require('./lib/umkehrwalze'),
-    Eintrittswalze  = require('./lib/eintrittswalze'),
-    Steckerbrett    = require('./lib/steckerbrett');
+var Enigma         = require('./lib/enigma');
+var Rotor          = require('./lib/rotor');
+var Umkehrwalze    = require('./lib/umkehrwalze');
+var Eintrittswalze = require('./lib/eintrittswalze');
+var Steckerbrett   = require('./lib/steckerbrett');
 
 module.exports = {
   Enigma: Enigma,
+
   Rotor: Rotor,
+
   Umkehrwalze: Umkehrwalze,
+  Reflector: Umkehrwalze,
+
   Eintrittswalze: Eintrittswalze,
-  Steckerbrett: Steckerbrett
+  EntryWheel: Eintrittswalze,
+
+  Steckerbrett: Steckerbrett,
+  Plugboard: Steckerbrett
 };
