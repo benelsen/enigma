@@ -1,17 +1,37 @@
+/*
+ * Steckerbrett
+ */
 
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var test = require('tape');
 
 var Steckerbrett = require('../lib/steckerbrett');
 
-describe('Steckerbrett', function() {
+var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-  describe('#setPlugs()', function () {
+var stecker = 'AB CD EF';
 
-    it('should be a function', function() {
-      var plugboard = new Steckerbrett();
-      plugboard.setPlugs.should.be.a.Function;
-    });
+test('Steckerbrett', function (t) {
 
-  });
+  t.plan(3);
+
+  var plugboard = new Steckerbrett();
+  t.ok(plugboard instanceof Steckerbrett, 'should be an instanceof Steckerbrett');
+
+  t.deepLooseEqual(plugboard.wiring, alphabet, 'default wiring');
+
+  plugboard = new Steckerbrett(stecker);
+  t.deepLooseEqual(plugboard.wiring, 'BADCFEGHIJKLMNOPQRSTUVWXYZ'.split(''), 'wiring set');
+
+});
+
+test('Steckerbrett#setPlugs()', function (t) {
+
+  t.plan(2);
+
+  var plugboard = new Steckerbrett();
+  t.equal(typeof plugboard.setPlugs, 'function', 'should be a function');
+
+  plugboard.setPlugs(stecker);
+  t.deepLooseEqual(plugboard.wiring, 'BADCFEGHIJKLMNOPQRSTUVWXYZ'.split(''), 'wiring set');
 
 });

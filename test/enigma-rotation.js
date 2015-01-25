@@ -1,3 +1,8 @@
+/*
+ * Enigma#rotate()
+ */
+
+var test = require('tape');
 
 var enigmajs = require('..');
 
@@ -36,37 +41,32 @@ for (var i = 0; i < rotoren.length; i++) {
   }
 }
 
-describe('Enigma', function(){
+test('Enigma#rotate()', function (t) {
 
-  describe('#getPositions()', function() {
+  t.plan(1);
 
-    it('should have position `AAA` after 16901 calls of #rotate()', function() {
+  for (var i = 0; i < eintrittswalzen.length; i++) {
+    var eintrittswalze = eintrittswalzen[i];
 
-      for (var i = 0; i < eintrittswalzen.length; i++) {
-        var eintrittswalze = eintrittswalzen[i];
+    for (var j = 0; j < umkehrwalzen.length; j++) {
+      var ukw = umkehrwalzen[j];
 
-        for (var j = 0; j < umkehrwalzen.length; j++) {
-          var ukw = umkehrwalzen[j];
+      for (var k = 0; k < permutations.length; k++) {
 
-          for (var k = 0; k < permutations.length; k++) {
+        enigma = null;
+        enigma = new enigmajs.Enigma(permutations[k], ukw, steckerbrett, eintrittswalze);
 
-            enigma = null;
-            enigma = new enigmajs.Enigma(permutations[k], ukw, steckerbrett, eintrittswalze);
+        enigma.setPositions('AAA');
+        enigma.setRingSettings('AAA');
 
-            enigma.setPositions('AAA');
-            enigma.setRingSettings('AAA');
-
-            for (var l = 1; l < (26*25*26+1); l++) {
-              enigma.rotate();
-            }
-
-            this.timeout(10000);
-            enigma.getPositions().should.equal('AAA');
-
-          }
+        for (var l = 1; l < (26*25*26+1); l++) {
+          enigma.rotate();
         }
-      }
 
-    });
-  });
+      }
+    }
+  }
+
+  t.equal(enigma.getPositions(), 'AAA', '#getPositions() should return `AAA` after 16901 calls of #rotate()');
+
 });

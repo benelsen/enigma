@@ -1,3 +1,97 @@
+/*
+ * Steckerbrett
+ */
+
+var test = require('tape');
+
+var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+var Walze = require('../lib/walze');
+
+test('Walze', function(t) {
+
+  t.plan(5);
+
+  var walze = new Walze();
+  t.ok(walze instanceof Walze, 'should be an instanceof Walze');
+
+  t.equal(walze.name, '', 'default name');
+  t.deepLooseEqual(walze.wiring, alphabet.split(''), 'default wiring');
+
+  var testWiring = 'BCDEFGHIJKLMNOPQRSTUVWXYZA';
+  walze = new Walze(testWiring, 'Test Walze');
+
+  t.equal(walze.name, 'Test Walze', 'name set');
+  t.deepLooseEqual(walze.wiring, testWiring.split(''), 'wiring set');
+
+});
+
+
+test('Walze#alphabet', function(t) {
+
+  t.plan(2);
+
+  var walze = new Walze();
+  t.ok(walze.alphabet, 'should exist');
+  t.deepLooseEqual(walze.alphabet, alphabet.split(''), 'should match');
+
+});
+
+
+test('Walze#setName()', function(t) {
+
+  t.plan(3);
+
+  var walze = new Walze();
+  t.equal(typeof walze.setName, 'function', 'should be a function');
+
+  walze.setName();
+  t.equal(walze.name, '', 'should set empty string if no argument is passed');
+
+  var testName = shuffle( alphabet.split('') ).join('');
+  walze.setName(testName);
+  t.equal(walze.name, testName, 'should set name to passed sting');
+
+});
+
+
+test('Walze#setWiring()', function(t) {
+
+  t.plan(4);
+
+  var walze = new Walze();
+  t.equal(typeof walze.setWiring, 'function', 'should be a function');
+
+  t.deepLooseEqual(walze.wiring, alphabet.split(''), 'should set alphabet when passing no arguments');
+
+  var testSequence = shuffle( alphabet.split('') );
+  walze.setWiring(testSequence);
+  t.deepLooseEqual(walze.wiring, testSequence, 'should set to passed array of strings/chars');
+
+  walze.setWiring(testSequence.join(''));
+  t.deepLooseEqual(walze.wiring, testSequence, 'should set to passed string');
+
+});
+
+
+test('Walze#signal()', function(t) {
+
+  t.plan(6);
+
+  var walze = new Walze();
+  t.equal(typeof walze.signal, 'function', 'should be a function');
+
+  t.equal(walze.signal('G'), 'G', 'should return the same character with default setting');
+
+  walze = new Walze('ZABCDEFGHIJKLMNOPQRSTUVWXY');
+  t.equal(walze.signal('A'), 'Z', 'should return the previous character with 1 right shifted alphabet');
+  t.equal(walze.signal('Z'), 'Y', 'should return the previous character with 1 right shifted alphabet');
+
+  t.equal(walze.signal('Z', true), 'A', 'should return the next character with 1 right shifted alphabet in reverse mode');
+  t.equal(walze.signal('Y', true), 'Z', 'should return the next character with 1 right shifted alphabet in reverse mode');
+
+});
+
 
 function shuffle(array) {
   var tmp, current, top = array.length;
@@ -11,116 +105,3 @@ function shuffle(array) {
 
   return array;
 }
-
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-var Walze = require('../lib/walze');
-
-describe('Walze', function() {
-
-  it('should set defaults if constructor is called without arguments', function() {
-    var walze = new Walze();
-    walze.name.should.eql('');
-    walze.wiring.should.eql(alphabet.split(''));
-  });
-
-  describe('#alphabet', function() {
-
-    it('should exist ', function() {
-      var walze = new Walze();
-      walze.should.have.property('alphabet');
-    });
-
-    it('should be set to alphabet', function() {
-      var walze = new Walze();
-      walze.alphabet.should.eql(alphabet.split(''));
-    });
-
-  });
-
-
-  describe('#setName()', function() {
-
-    it('should be a function', function() {
-      var walze = new Walze();
-      walze.setName.should.be.a.Function;
-    });
-
-    it('should set empty string if no argument is passed', function() {
-      var walze = new Walze();
-      walze.setName();
-      walze.name.should.equal('');
-    });
-
-    it('should set empty string to the string that passed', function() {
-      var testName = shuffle( alphabet.split('') ).join('');
-      var walze = new Walze();
-      walze.setName(testName);
-      walze.name.should.equal(testName);
-    });
-
-  });
-
-
-  describe('#setWiring()', function() {
-
-    it('should be a function', function() {
-      var walze = new Walze();
-      walze.setWiring.should.be.a.Function;
-    });
-
-    it('should set alphabet as wiring when passing no arguments', function() {
-      var walze = new Walze();
-      walze.setWiring();
-      walze.wiring.should.eql(alphabet.split(''));
-    });
-
-    it('should set wiring when passing array of strings/chars', function() {
-      var testSequence = shuffle( alphabet.split('') );
-      var walze = new Walze();
-      walze.setWiring(testSequence);
-      walze.wiring.should.eql(testSequence);
-    });
-
-    it('should set wiring when passing string', function() {
-      var testSequence = shuffle( alphabet.split('') );
-      var walze = new Walze();
-      walze.setWiring(testSequence.join(''));
-      walze.wiring.should.eql(testSequence);
-    });
-
-  });
-
-
-  describe('#signal()', function() {
-
-    it('should be a function', function() {
-      var walze = new Walze();
-      walze.signal.should.be.a.Function;
-    });
-
-    it('should return the same character', function() {
-      var testChar = shuffle( alphabet.split('') ).join('').substr(0,1);
-
-      var walze = new Walze(alphabet);
-      walze.signal(testChar).should.eql(testChar);
-    });
-
-    it('should return the next character', function() {
-      var testSequence = alphabet.substr(1) + alphabet.substr(0,1);
-      var testCharIndex = Math.floor( 25 * Math.random() );
-
-      var walze = new Walze(testSequence);
-      walze.signal(alphabet.substr(testCharIndex,1)).should.eql(testSequence.substr(testCharIndex,1));
-    });
-
-    it('should return the previous character', function() {
-      var testSequence = alphabet.substr(1) + alphabet.substr(0,1);
-      var testCharIndex = Math.floor( 2 + 23 * Math.random() );
-
-      var walze = new Walze(testSequence);
-      walze.signal(alphabet.substr(testCharIndex,1), true).should.eql(testSequence.substr(testCharIndex-2,1));
-    });
-
-  });
-});

@@ -1,9 +1,14 @@
+/*
+ * Four rotor Enigma #2
+ */
+
+var test = require('tape');
 
 var enigmajs = require('..');
 
 // Message taken from http://www.bytereef.org/m4-project-second-break.html
-var ciphertext   = 'TMKFNWZXFFIIYXUTIHWMDHXIFZEQVKDVMQSWBQNDYOZFTIWMJHXHYRPACZUGRREMVPANWXGTKTHNRLVHKZPGMNMVSECVCKHOINPLHHPVPXKMBHOKCCPDPEVXVVHOZZQBIYIEOUSEZNHJKWHYDAGTXDJDJKJPKCSDSUZTQCXJDVLPAMGQKKSHPHVKSVPCBUWZFIZPFUUP';
 var plaintext    = 'VVVJSCHREEDERJAUFGELEITKURSFUENFFUENFGRADNICHTSGEFUNDENYMARSCAIEREBEFOHLENESQUADRATXSTANRORTMARQUANTONJOTADREINEUNNEUNFUENFXSSSOOOVIERYSEEDREMYEINSNULYYEINSNULBEDECKTYZWOACHTMBSTEIGTYNBBELSICHTEINSSMT';
+var ciphertext   = 'TMKFNWZXFFIIYXUTIHWMDHXIFZEQVKDVMQSWBQNDYOZFTIWMJHXHYRPACZUGRREMVPANWXGTKTHNRLVHKZPGMNMVSECVCKHOINPLHHPVPXKMBHOKCCPDPEVXVVHOZZQBIYIEOUSEZNHJKWHYDAGTXDJDJKJPKCSDSUZTQCXJDVLPAMGQKKSHPHVKSVPCBUWZFIZPFUUP';
 var stecker      = 'AT CL DH EP FG IO JN KQ MU RX';
 var ringSettings = 'AANV';
 var messageKey   = 'MCSF';
@@ -21,26 +26,22 @@ var steckerbrett = new enigmajs.Steckerbrett( stecker );
 
 var enigma = new enigmajs.Enigma([rotorB, rotorII, rotorIV, rotorI], ukwBalt, steckerbrett, etw);
 
-describe('Four rotor Enigma test #2', function() {
+test('encryption', function(t) {
 
-  describe('encryption', function() {
+  t.plan(1);
 
-    it('encrypted plaintext should match ciphertext', function() {
-      enigma.setRingSettings( ringSettings );
-      enigma.setPositions( messageKey );
-      enigma.string( plaintext ).should.equal( ciphertext );
-    });
+  enigma.setRingSettings( ringSettings );
+  enigma.setPositions( messageKey );
+  t.equal(enigma.string( plaintext ), ciphertext, 'encrypted plaintext should match ciphertext');
 
-  });
+});
 
-  describe('decryption', function() {
+test('decryption', function(t) {
 
-    it('decrypted ciphertext should match plaintext', function() {
-      enigma.setRingSettings( ringSettings );
-      enigma.setPositions( messageKey );
-      enigma.string( ciphertext ).should.equal( plaintext );
-    });
+  t.plan(1);
 
-  });
+  enigma.setRingSettings( ringSettings );
+  enigma.setPositions( messageKey );
+  t.equal(enigma.string( ciphertext ), plaintext, 'decrypted ciphertext should match plaintext');
 
 });

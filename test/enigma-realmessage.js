@@ -1,4 +1,8 @@
-var assert = require('assert');
+/*
+ * Three rotor Enigma end-to-end
+ */
+
+var test = require('tape');
 
 var enigmajs = require('..');
 
@@ -11,6 +15,7 @@ var startPosition = 'QWE';
 var messageKey    = 'RTZ';
 var encMessageKey = 'EWG';
 
+// Setup the Enigma
 var etw = new enigmajs.Eintrittswalze('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 var rotorI   = new enigmajs.Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q');
@@ -23,15 +28,26 @@ var steckerbrett = new enigmajs.Steckerbrett( stecker );
 
 var enigma = new enigmajs.Enigma([rotorI, rotorIV, rotorIII], ukwB, steckerbrett, etw);
 enigma.setRingSettings( ringSettings );
-enigma.setPositions( startPosition );
 
 // Encipher the message key
+enigma.setPositions( startPosition );
+
 var cipheredMessageKey = enigma.string( messageKey );
 
+test('Encipher the message key', function (t) {
+  t.plan(1);
+  t.equal(cipheredMessageKey, encMessageKey, 'should match');
+});
+
+// Encipher the message
 enigma.setPositions( messageKey );
 
-// Cipher the text
 var cipheredText = enigma.string( plaintext );
+
+test('Encipher the message', function (t) {
+  t.plan(1);
+  t.equal(cipheredText, cipherTest, 'should match');
+});
 
 // Reset the enigma
 enigma.setPositions( startPosition );
@@ -39,29 +55,18 @@ enigma.setPositions( startPosition );
 // Decipher the message key
 var decipheredMessageKey = enigma.string( cipheredMessageKey );
 
+test('Decipher the message key', function (t) {
+  t.plan(1);
+  t.equal(decipheredMessageKey, messageKey, 'should match');
+});
+
 // Set the the message key
 enigma.setPositions( decipheredMessageKey );
 
-// Decipher the text
+// Decipher the message
 var decipheredText = enigma.string( cipheredText );
 
-
-describe('Three rotor Enigma end-to-end test', function(){
-
-  it('cipheredMessageKey should be an exact match of encMessageKey', function() {
-    cipheredMessageKey.should.equal( encMessageKey );
-  });
-
-  it('cipheredText should be an exact match of cipherTest', function() {
-    cipheredText.should.equal( cipherTest);
-  });
-
-  it('decipheredMessageKey should be an exact match of messageKey', function() {
-    decipheredMessageKey.should.equal( messageKey );
-  });
-
-  it('decipheredText should be an exact match of plaintext', function() {
-    decipheredText.should.equal( plaintext );
-  });
-
+test('Decipher the message', function (t) {
+  t.plan(1);
+  t.equal(decipheredText, plaintext, 'should match');
 });
