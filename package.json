@@ -11,12 +11,15 @@
     "url": "https://github.com/benelsen/enigma.git"
   },
   "scripts": {
+    "prepublish": "browserify -s enigma -o enigma.js index.js && uglifyjs -c -m -o enigma.min.js -- enigma.js",
     "test": "tape test/*.js | tap-spec"
   },
   "dependencies": {},
   "devDependencies": {
+    "browserify": "^8.1.1",
     "tap-spec": "^2.2.0",
-    "tape": "^3.4.0"
+    "tape": "^3.4.0",
+    "uglify-js": "^2.4.16"
   },
   "license": "MIT"
 }
