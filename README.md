@@ -2,6 +2,7 @@
 
 Implementation of an enigma machine
 
+[![Build Status](https://travis-ci.org/benelsen/enigma.png?branch=master)](https://travis-ci.org/benelsen/enigma)
 [![Join the chat at https://gitter.im/benelsen/enigma](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/benelsen/enigma?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Installation
@@ -28,12 +29,6 @@ console.log( enigma.string( 'EXAMPLEMESSAGE' ) );
 Prints out `RRHIUUFUVJLJYY`
 
 You should also have a look at [this test](test/enigma-realmessage.js) which demonstrates a more realistic procedure to cipher/decipher a message.
-
-## Testing
-
-    $ npm test
-
-  [![Build Status](https://travis-ci.org/benelsen/enigma.png?branch=master)](https://travis-ci.org/benelsen/enigma)
 
 ## License
 
